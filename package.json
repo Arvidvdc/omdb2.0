@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Arvidvdc/omdb2.0#readme",
   "dependencies": {
+    "dotenv": "^8.2.0",
     "ejs": "^2.7.1",
     "express": "^4.17.1",
     "request": "^2.88.0"
