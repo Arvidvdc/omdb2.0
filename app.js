@@ -16,7 +16,6 @@ app.get("/",(req,res)=>{
 
 // Results route
 app.get("/results", (req,res)=>{
-    console.log(req.query);
 
     let selector = "&" + req.query.searchType + "=",
         term     =  selector + req.query.title,
@@ -25,14 +24,17 @@ app.get("/results", (req,res)=>{
         plot     = "&plot=full";
 
     let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDb_KEY  + term + type + y + plot
-    console.log(url);
     
-    request(url , (err,resonse,body)=>{
-        if(!err && resonse.statusCode==200) {
-            let data=JSON.parse(body)
-            console.log(data);
-            res.render("results", {data: data});
+request(url , (err,resonse,body)=>{
+    if(!err && resonse.statusCode==200) {
+        var data=JSON.parse(body);
+        // Get maximum number pages
+        if(data["totalResults"]>0) {
+            var numberOfPages=Math.ceil(data["totalResults"]/10);
         }
+    }
+        console.log(numberOfPages);
+        res.render("results", {data: data,numberOfPages: numberOfPages});
     });
 });
 
