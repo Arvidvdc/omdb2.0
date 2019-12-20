@@ -16,12 +16,21 @@ app.get("/",(req,res)=>{
 
 // Results route
 app.get("/results", (req,res)=>{
-    let query = req.query.zoeken;
-    let url = "http://www.omdbapi.com/?apikey=7ed4327f&s=" + query
+    console.log(req.query);
+
+    let selector = "&" + req.query.searchType + "=",
+        term     =  selector + req.query.title,
+        type     = "&type=" + req.query.type,
+        y        = "&y=" + req.query.year,
+        plot     = "&plot=full";
+
+    let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDb_KEY  + term + type + y + plot
+    console.log(url);
     
     request(url , (err,resonse,body)=>{
         if(!err && resonse.statusCode==200) {
             let data=JSON.parse(body)
+            console.log(data);
             res.render("results", {data: data});
         }
     });

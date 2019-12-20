@@ -1,7 +1,19 @@
+<%- include("./partials/header") -%>
+
 <h1>Resultaten</h1>
-<ul>
-    <% data["Search"].forEach(movie => { %>
-        <li><strong><%= movie["Title"] %></strong> - <%= movie["Year"] %> </li>
-    <% }); %>
-</ul>
 <a href="/">Opnieuw zoeken</a>
+<ul>
+    <% if(!data["Response"]) { %>
+        <%= data["Error"] %>
+    <% } else if(data["totalResults"]>0) { %>
+        <p><%= data["totalResults"] %></p>
+        <% data["Search"].forEach(movie => { %>
+            <img src="<%= movie["Poster"] %>" alt="owh"> <strong><%= movie["Title"] %></strong> - <%= movie["Year"] %>
+        <% }); %>
+    <% } else { %>
+            <img src="<%= data["Poster"] %>" alt="owh"> <strong><%= data["Title"] %></strong> - <%= data["Year"] %>
+    <% } %>
+    
+</ul>
+
+<%- include("./partials/footer") -%>

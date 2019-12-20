@@ -3,9 +3,39 @@
 <h1>Zoek pagina</h1>
 
 <form action="/results" method="GET">
-    <input type="text" name="zoeken" placeholder="Zoeknaam">
+    <select name="searchType">
+        <option value="i">imdbID</option>
+        <option value="t">Titel</option>
+        <option value="s">Volledig</option>
+    </select>
+    <input type="text" name="title" placeholder="Zoeknaam">
+
+    <select name="Type">
+        <option value="series">Series</option>
+        <option value="movie">Films</option>
+        <option value="game">Games</option>
+    </select>
+
+    <input type="text" name="type" placeholder="Type">
+    <input type="text" name="year" placeholder="Year">
+
     <button>Zoeken</button>
 </form>
+
+
+<p>specifiek voor 'search':</p>
+<p>Zoeken:</p>
+<p>page</p>
+<br>
+<p>results:</p>
+<li>komen in extra object</li>
+<li>aantal vermeld</li>
+<li>foutmelding</li>
+{
+    "Response": "False",
+    "Error": "Movie not found!"
+  }
+
 
 
 <script src="/js/main.js"></script>
