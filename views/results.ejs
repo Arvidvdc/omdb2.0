@@ -2,8 +2,9 @@
 
 <h1>Resultaten</h1>
 <a href="/">Opnieuw zoeken</a>
+<p><%= data["Response"] %> oOo <%= data["totalResults"] %></p>
 <ul>
-    <% if(!data["Response"]) { %>
+    <% if(data["Response"]==="False") { %>
         <%= data["Error"] %>
     <% } else if(data["totalResults"]>0) { %>
         <p><%= data["totalResults"] %></p>

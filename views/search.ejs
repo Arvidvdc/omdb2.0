@@ -4,6 +4,7 @@
 
 <form action="/results" method="GET">
     <select name="searchType">
+        <option selected hidden>Soort zoekopdracht</option>
         <option value="i">imdbID</option>
         <option value="t">Titel</option>
         <option value="s">Volledig</option>
@@ -11,6 +12,7 @@
     <input type="text" name="title" placeholder="Zoeknaam">
 
     <select name="Type">
+        <option selected hidden>Series/Films/Games</option>
         <option value="series">Series</option>
         <option value="movie">Films</option>
         <option value="game">Games</option>
@@ -21,22 +23,6 @@
 
     <button>Zoeken</button>
 </form>
-
-
-<p>specifiek voor 'search':</p>
-<p>Zoeken:</p>
-<p>page</p>
-<br>
-<p>results:</p>
-<li>komen in extra object</li>
-<li>aantal vermeld</li>
-<li>foutmelding</li>
-{
-    "Response": "False",
-    "Error": "Movie not found!"
-  }
-
-
 
 <script src="/js/main.js"></script>
 <%- include("./partials/footer") -%>
