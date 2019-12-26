@@ -1,5 +1,11 @@
 # omdb2.0
+Reading omdb api
 
-Deze repository is een refactoring project van mijn eerdere omdb 1.0 project gemaakt in Visual Basic. De huidige opzet zal via Nodejs de OMDb API bevragen.
+# Description
+This repository is a refactoring repository from omdb1.0. Omdb1.0 is a Visual Basic project that I've build long time ago.
 
-Dit project is afgeleid van het OMDb-API hoofdstuk van de Udemy course "The Web Developer Bootcamp" van dhr C. Steele.
+## Features
+
+##### 26 december 2019
+* Added search page.
+* Added results page.
