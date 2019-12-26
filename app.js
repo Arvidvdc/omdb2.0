@@ -20,9 +20,10 @@ app.get("/results", (req,res)=>{
         term     =  selector + req.query.title,
         type     = "&type=" + req.query.type,
         y        = "&y=" + req.query.year,
-        plot     = "&plot=full";
+        plot     = "&plot=full",
+        page     = "&page=" + req.query.page;
 
-    let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDb_KEY  + term + type + y + plot + "&page=1";
+    let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDb_KEY  + term + type + y + plot + page;
     console.log(url);
     request(url , (err,resonse,body)=>{
         if(!err && resonse.statusCode==200) {
@@ -30,10 +31,10 @@ app.get("/results", (req,res)=>{
             // Get maximum number pages
             if(data["totalResults"]>0) {
                 var numberOfPages=Math.ceil(data["totalResults"]/10);
-                console.log("total Pages: " + numberOfPages + " backButton: " + "pageBack" + " nextButton " + "pageNext");
-                res.redirect("/results/"+"1");
+                console.log("total Pages: " + numberOfPages);
+                res.redirect("/results/" + req.query.page);
             } else {
-                res.render("results", {data: data, numberOfPages: numberOfPages});
+                res.render("results", {data: data});
             }
         }
     });
