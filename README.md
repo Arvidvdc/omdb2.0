@@ -9,3 +9,6 @@ This repository is a refactoring repository from omdb1.0. Omdb1.0 is a Visual Ba
 ##### 26 december 2019
 * Added search page.
 * Added results page.
+
+##### BugFix 26 december 2019
+* Fixed input on search page overwrites dropdown value.
