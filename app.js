@@ -25,15 +25,15 @@ app.get("/results", (req,res)=>{
 
     let url = "http://www.omdbapi.com/?apikey=" + process.env.OMDb_KEY  + term + type + y + plot + "&page=1";
     console.log(url);
-request(url , (err,resonse,body)=>{
-    if(!err && resonse.statusCode==200) {
-        var data=JSON.parse(body);
-        // Get maximum number pages
-        if(data["totalResults"]>0) {
-            var numberOfPages=Math.ceil(data["totalResults"]/10);
-            console.log("total Pages: " + numberOfPages + " backButton: " + "pageBack" + " nextButton " + "pageNext");
+    request(url , (err,resonse,body)=>{
+        if(!err && resonse.statusCode==200) {
+            var data=JSON.parse(body);
+            // Get maximum number pages
+            if(data["totalResults"]>0) {
+                var numberOfPages=Math.ceil(data["totalResults"]/10);
+                console.log("total Pages: " + numberOfPages + " backButton: " + "pageBack" + " nextButton " + "pageNext");
+            }
         }
-    }
         console.log(data);
         res.render("results", {data: data, numberOfPages: numberOfPages});
     });

@@ -1,23 +1,100 @@
 <%- include("./partials/header") -%>
 
-<h1>Resultaten</h1>
+<h1>Resultaat</h1>
 
-<a href="/">Opnieuw zoeken</a>
-<p><%= data["totalResults"] %></p>
+<p><a class="btn btn-dark btn-sm" href="/">Opnieuw zoeken</a></p>
 
-<p>oOo <%= numberOfPages %> oOo </p>
+<% if(data["Response"]==="False") { %>
+    <%= data["Error"] %>
+<% } else { %>
+    <div class="row justify-content-around">
+        <div class="col">
+            <img src="<%= data["Poster"] %>" alt="<%= data["Poster"] %>">
+        </div>
+        <div class="col">
+            <div class="row">
+                <div class="col">
+                    <strong>Titel</strong>
+                </div>
+                <div class="col">
+                    <strong><%= data["Title"] %></strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Uitgezonden / eerste datum</strong>
+                </div>
+                <div class="col">
+                        <%= data["Year"] %> / <%= data["Released"] %>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Genre</strong>
+                </div>
+                <div class="col">
+                    <%= data["Genre"] %>
+                </div>
+            </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>Acteurs</strong>
+                </div>
+               <div class="col">
+                    <%= data["Actors"] %>
+                </div>
+           </div>
+            <div class="row">
+                <div class="col">
+                    <strong>Taal / land</strong>
+                </div>
+                <div class="col">
+                    <%= data["Language"] %> / <%= data["Country"] %>
+                </div>
+           </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>Speelduur / classificatie</strong>
+                </div>
+               <div class="col">
+                    <%= data["Runtime"] %> / <%= data["Rated"] %>
+                </div>
+           </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>Awards</strong>
+                </div>
+               <div class="col">
+                    <%= data["Awards"] %>
+                </div>
+           </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>imdb ID / imdb Score / imdb</strong>
+                </div>
+                <div class="col">
+                    <%= data["imdbID"] %> / <%= data["imdbRating"] %> / <a href="https://www.imdb.com/title/<%= data["imdbID"] %>" target="_blank">link</a>
+                 </div>
+           </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>Soort / Aantal seizoenen</strong>
+                </div>
+               <div class="col">
+                    <%= data["Type"] %> / <%= data["totalSeasons"] %>
+                </div>
+           </div>
+            <div class="row">
+                 <div class="col">
+                    <strong>Plot</strong>
+                </div>
+               <div class="col">
+                    <%= data["Plot"] %>
+                </div>
+           </div>
 
-<ul>
-    <% if(data["Response"]==="False") { %>
-        <%= data["Error"] %>
-    <% } else if(data["totalResults"]>0) { %>
-        <% data["Search"].forEach(movie => { %>
-            <img src="<%= movie["Poster"] %>" alt="owh"> <strong><%= movie["Title"] %></strong> - <%= movie["Year"] %>
-        <% }); %>
-    <% } else { %>
-            <img src="<%= data["Poster"] %>" alt="owh"> <strong><%= data["Title"] %></strong> - <%= data["Year"] %>
-    <% } %>
-    
-</ul>
+        </div>
+    </div>
+<% } %>
 
 <%- include("./partials/footer") -%>
