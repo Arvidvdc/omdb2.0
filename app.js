@@ -1,7 +1,6 @@
 const   express     = require("express"),
         app         = express(),
         request     = require("request");
-
         
 // dotENV
 require('dotenv').config();
@@ -32,11 +31,16 @@ app.get("/results", (req,res)=>{
             if(data["totalResults"]>0) {
                 var numberOfPages=Math.ceil(data["totalResults"]/10);
                 console.log("total Pages: " + numberOfPages + " backButton: " + "pageBack" + " nextButton " + "pageNext");
+                res.redirect("/results/"+"1");
+            } else {
+                res.render("results", {data: data, numberOfPages: numberOfPages});
             }
         }
-        console.log(data);
-        res.render("results", {data: data, numberOfPages: numberOfPages});
     });
+});
+
+app.get("/results/:page", (req,res) => {
+    res.send("Pagination")
 });
 
 // Express listener
