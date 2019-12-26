@@ -40,7 +40,7 @@ app.get("/results", (req,res)=>{
 });
 
 app.get("/results/:page", (req,res) => {
-    res.send("Pagination")
+    res.render("pagination");
 });
 
 // Express listener
